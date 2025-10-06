@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    position: relative;
+  }
+
+  /* glowing light following mouse */
+  .glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255,255,255,0.3), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: all 0.1s ease-out;
+    z-index: 0;
+  }
+
+  /* Glass-style login box */
+  .login-box {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 40px 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    width: 350px;
+    transition: transform 0.3s ease;
+  }
+
+  .login-box:hover {
+    transform: translateY(-5px);
+  }
+
+  .login-box h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+  }
+
+  .input-box {
+    position: relative;
+    margin-bottom: 25px;
+  }
+
+  .input-box input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 10px;
+    background: transparent;
+    color: white;
+    outline: none;
+    transition: 0.3s;
+  }
+
+  .input-box input::placeholder {
+    color: rgba(255,255,255,0.7);
+  }
+
+  .input-box input:focus {
+    border-color: #fff;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.3);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .btn:hover {
+    background: rgba(255,255,255,0.6);
+    color: #333;
+    transform: scale(1.05);
+  }
+</style>
+</head>
+<body>
+
+  <div class="glow" id="glow"></div>
+
+  <div class="login-box">
+    <h2>Login</h2>
+    <form onsubmit="return validateLogin(event)">
+      <div class="input-box">
+        <input type="text" id="username" placeholder="Enter Username" required>
+      </div>
+      <div class="input-box">
+        <input type="password" id="password" placeholder="Enter Password" required>
+      </div>
+      <button type="submit" class="btn">Login</button>
+    </form>
+  </div>
+
+  <script>
+    // glowing light movement
+    const glow = document.getElementById('glow');
+    document.addEventListener('mousemove', e => {
+      glow.style.left = `${e.pageX}px`;
+      glow.style.top = `${e.pageY}px`;
+    });
+
+    // login validation
+    function validateLogin(event) {
+      event.preventDefault();
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+
+      if (user === "Sarwan" && pass === "Bobize") {
+        alert("Login Successful!");
+        window.location = "home.html";
+      } else {
+        alert("Invalid Username or Password!");
+      }
+    }
+  </script>
+
+</body>
+</html>
+
+
